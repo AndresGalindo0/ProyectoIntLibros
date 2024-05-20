@@ -9,31 +9,33 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
-            background-image: url('imagen.jpeg'); /* Cambia 'imagen.png' por la ruta de tu imagen */
-            background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
-            background-position: center; /* Centra la imagen en el fondo */
-            color: #333; /* Cambia el color de texto a negro */
+            background-image: url('imagen7.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
-        /* Estilos de la tarjeta */
+
         .card {
-            background-color: rgba(255, 255, 255, 0.5); /* Mantenemos el fondo de la tarjeta con un color blanco semitransparente */
-            border: none; /* Eliminamos el borde de la tarjeta */
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
             margin: auto;
         }
-        /* Estilos para el texto Intercambio de libros */
+
         .title {
-            font-style: normal; /* Aplicamos el estilo de fuente oblicuo */
-            font-size: 300%; /* Aumentamos el tamaño de la fuente al 120% */
-            font-family: cursive; /* Cambiamos el tipo de fuente a cursiva */
-            margin-bottom: 0; /* Eliminamos el margen inferior */
-            text-align: center; /* Centramos el texto */
+            font-style: normal;
+            font-size: 300%;
+            font-family: Georgia, serif;
+            margin-bottom: 0;
+            text-align: center;
+            color: white !important;
         }
-        /* Agregamos un poco de margen en la parte superior del formulario */
+
         .form-container {
             margin-top: 5px;
         }
@@ -45,14 +47,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-start">
             <div class="col-lg-6">
                 <div class="card shadow-lg rounded-lg">
                     <div class="card-body">
-                        <div class="form-container"> <!-- Nuevo contenedor del formulario -->
+                        <div class="form-container">
                             <form id="loginForm" method="POST" action="valLogin.php">
                                 <div class="form-group">
-                                    <span class="cursive-text title">Intercambio de libros</span><br><br>
                                     <label class="small mb-1" for="nombre">Nombre de usuario</label>
                                     <input class="form-control py-4" id="nombre" name="nombre" type="text" placeholder="Ingresa tu nombre de usuario" required />
                                 </div>
@@ -81,8 +82,8 @@
         $(document).ready(function() {
             $('#loginForm').submit(function(e) {
                 e.preventDefault();
-                var nombre = $('#nombre').val(); // Obtener el valor del campo nombre
-                if (nombre === 'admin') { // Verificar si el nombre es 'admin'
+                var nombre = $('#nombre').val();
+                if (nombre === 'admin') { 
                     window.location.href = 'Admin/usuarios_lista.php';
                 } else {
                     var formData = $(this).serialize();

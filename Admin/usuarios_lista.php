@@ -2,7 +2,7 @@
 session_start();
 require "../funciones/conecta.php";
 $con = conecta();
-$sql = "SELECT * FROM usuarios WHERE eliminado = 0 ORDER BY verificado ASC"; // Ordena por verificado de manera ascendente
+$sql = "SELECT * FROM usuarios WHERE eliminado = 0 ORDER BY verificado ASC";
 $res = $con->query($sql);
 $num = $res->num_rows;
 ?>
@@ -27,7 +27,7 @@ $num = $res->num_rows;
 
         .tabla {
             width: 80%;
-            margin: 0 auto; /* Centra la tabla horizontalmente */
+            margin: 0 auto;
             border-collapse: collapse;
             border: 1px solid #ccc;
         }

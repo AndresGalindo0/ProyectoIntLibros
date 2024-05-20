@@ -22,11 +22,11 @@ require_once("../funciones/conecta.php");
 $conexion = conecta();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["comentario"])) {
-    $perfil_id = $_SESSION["idUser"];
+    $otroUsuarioID = $_POST["otroUsuarioID"];
     $contenido = $conexion->real_escape_string($_POST["comentario"]);
     $estado = "pendiente";
 
-    $sql = "INSERT INTO reportes (contenido, estado, perfil_id) VALUES ('$contenido', '$estado', '$perfil_id')";
+    $sql = "INSERT INTO reportes (contenido, estado, perfil_id) VALUES ('$contenido', '$estado', '$otroUsuarioID')";
 
     if ($conexion->query($sql) === TRUE) {
         echo "<script>

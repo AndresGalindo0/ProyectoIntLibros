@@ -6,19 +6,32 @@
     <title>Resultados de Búsqueda</title>
     <style>
         body {
+            background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), url('imagen9.jpg');
+            background-size: cover;
+        }
+
+        body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             margin: 0;
             padding: 20px;
         }
+
         .container {
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 800px;
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-left: 5px;
+            margin-right: auto;
         }
+
         h2 {
             color: #007bff;
             margin-bottom: 20px;
@@ -67,8 +80,6 @@ if ($con->connect_error) {
 
 if (isset($_GET['titulo'])) {
     $titulo = $_GET['titulo'];
-
-    // Modificación en la consulta SQL para filtrar los libros de usuarios con status en 1
     $sql = "SELECT libros.titulo, libros.usuario_id, usuarios.nombre, libros.edicion, libros.resena, libros.status 
             FROM libros 
             JOIN usuarios ON libros.usuario_id = usuarios.id 

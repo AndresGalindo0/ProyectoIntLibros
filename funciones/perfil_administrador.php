@@ -96,7 +96,6 @@ if (isset($_GET['id'])) {
         $archivo = $row["archivo_n"];
         $archivoc = $row["archivo_x"];
 
-        // Aquí comienza la parte de HTML para mostrar el perfil del usuario
         echo "<div class='container'>";
         echo "<div class='header'>Perfil de Usuario</div>";
         echo "<div class='profile-info'>";

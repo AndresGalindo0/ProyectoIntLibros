@@ -3,16 +3,15 @@ session_start();
 if(isset($_SESSION['idUser'])) {
     $usuario_id = $_SESSION['idUser'];
 } else {
-    // Si el usuario no está autenticado, redirigirlo a la página de inicio de sesión o mostrar un mensaje de error
     header("Location: ../index.php");
     exit();
 }
 require "conecta.php";
 $con = conecta();
 
-// Comprobamos si el usuario está autenticado y obtenemos su id
-
 $titulo = $_POST['titulo'];
+$autor = $_POST['autor'];
+$isbn = $_POST['isbn'];
 $edicion = $_POST['edicion'];
 $resena = $_POST['resena'];
 $status = $_POST['status'];
@@ -31,8 +30,8 @@ if(isset($_FILES['foto'])) {
 
         if(move_uploaded_file($archivo_temp_foto, $ruta_archivo)) {
 
-            $sql = "INSERT INTO libros (usuario_id, titulo, edicion, resena, status, foto, archivo_f) 
-                    VALUES ('$usuario_id', '$titulo', '$edicion', '$resena', '$status', '$nombre_foto', '$nombre_encriptadoF')";
+            $sql = "INSERT INTO libros (usuario_id, titulo, autor, isbn, edicion, resena, status, foto, archivo_f) 
+                    VALUES ('$usuario_id', '$titulo', '$autor', '$isbn', '$edicion', '$resena', '$status', '$nombre_foto', '$nombre_encriptadoF')";
             $res = $con->query($sql);
 
             if($res) {

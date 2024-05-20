@@ -1,30 +1,24 @@
 <?php
     session_start();
-    // Verificar si la variable de sesión 'nombreUser' está definida
     $nombre = isset($_SESSION['nombreUser']) ? $_SESSION['nombreUser'] : "Usuario";
     
     require_once("conecta.php");
     $con = conecta();
 
-    // Realizar la consulta SQL para obtener solo los libros de usuarios con status en 1
     $query = "SELECT libros.titulo, libros.usuario_id, usuarios.nombre, libros.archivo_f, libros.edicion, libros.resena, libros.status FROM libros JOIN usuarios ON libros.usuario_id = usuarios.id WHERE usuarios.status = 1";
     $result = mysqli_query($con, $query);
 
-    // Verificar si la consulta se ejecutó correctamente
     if (!$result) {
         echo "Error al consultar la base de datos: " . mysqli_error($con);
         exit;
     }
 
-    // Crear un array para almacenar los libros
     $libros = [];
 
-    // Recorrer los resultados y guardarlos en el array
     while ($fila = mysqli_fetch_assoc($result)) {
         $libros[] = $fila;
     }
 
-    // Cerrar la conexión a la base de datos
     mysqli_close($con);
 ?>
 
@@ -36,23 +30,24 @@
     <title>Página Principal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Estilos adicionales inspirados en Bootstrap */
+        
         .container {
+            color: #000099;
             padding: 20px;
-            position: relative; /* Añadido para posicionar el contenedor de búsqueda */
+            position: relative;
+            font-family: 'Impact', sans-serif;
         }
 
         .search-container {
-            text-align: right; /* Alinear a la derecha */
-            position: absolute; /* Posicionar absolutamente */
-            top: 20px; /* Ajustar la posición vertical según sea necesario */
-            right: 20px; /* Ajustar la posición horizontal según sea necesario */
+            text-align: right;
+            position: absolute;
+            top: 20px;
+            right: 20px;
         }
 
-        /* Estilos para el resto de los elementos */
         .welcome {
             margin-bottom: 20px;
         }
@@ -78,7 +73,7 @@
 
         .back-button:hover {
             color: #fff;
-            background-color: #155724;
+            background-color: #000099;
             border-color: #155724;
         }
 
@@ -94,7 +89,7 @@
 
         button[type="submit"] {
             color: #fff;
-            background-color: #007bff;
+            background-color: #000099;
             border-color: #007bff;
             display: inline-block;
             font-weight: 400;
@@ -119,7 +114,6 @@
             border-color: #0056b3;
         }
 
-        /* Estilos para el carrusel */
         .slick-slider {
             width: 100%;
         }
@@ -129,9 +123,13 @@
         }
 
         .slick-slide img {
-            width: 100%;
+            width: 200px;
+            height: auto;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 0 auto;
+
         }
 
         .slick-slide .book-title {
@@ -145,12 +143,11 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        /* Estilos para el fondo */
         body {
-            font-family: Arial, sans-serif;
-            background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.9)), url('imagen3.jpeg'); /* Agregar gradiente transparente */
-            background-size: cover; /* Para asegurarse de que la imagen de fondo cubra todo el cuerpo */
-            background-repeat: no-repeat; /* Evita la repetición de la imagen de fondo */
+            font-family: , sans-serif;
+            background-image: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('imagen13.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
             margin: 0;
             padding: 0;
             display: flex;
@@ -162,20 +159,17 @@
 </head>
 <body>
     <div class="container">
-        <h1>Página Principal</h1>
-        <div class="welcome">Bienvenido <?php echo $nombre;?> al intercambio de libros de CUCEI</div>
+        <h1 id="dynamic-heading" style="color: #000099;">Hola</h1>
+        <div class="welcome">Bienvenido <?php echo $nombre;?></div>
         <a href="perfil.php" class="back-button">Perfil de usuario</a>
         <a href="cerrar_sesion.php" class="back-button logout-button">Cerrar sesión</a>
-        <!-- Formulario de búsqueda -->
         <div class="search-container">
             <form action="buscar.php" method="get">
                 <input type="text" name="titulo" placeholder="Buscar libros por título..." required>
                 <button type="submit">Buscar</button>
             </form>
         </div>
-        
-        <!-- Carrusel de libros -->
-        <h2>Libros disponibles</h2>
+        <h2>Recomendaciones para ti</h2>
         <div class="slider">
             <?php foreach ($libros as $libro): ?>
                 <div class="book">
@@ -186,9 +180,18 @@
         </div>
     </div>
 
-    <!-- JavaScript para el carrusel -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script> <!-- Slick Carousel -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                const heading = document.getElementById('dynamic-heading');
+                heading.textContent = 'Intercambio de libros';
+                heading.style.fontFamily = 'Impact';
+            }, 3000);
+        });
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
         $(document).ready(function(){
             $('.slider').slick({
@@ -196,7 +199,7 @@
                 infinite: true,
                 speed: 500,
                 autoplay: true,
-                autoplaySpeed: 2000,
+                autoplaySpeed: 600,
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 responsive: [
@@ -220,3 +223,4 @@
     </script>
 </body>
 </html>
+

@@ -53,6 +53,8 @@ $nombre = $_SESSION['nombreUser'];
     <h2 style="text-align: center;">Registro de nuevos libros</h2>
         <form method="post" action="guardarLibros.php" enctype="multipart/form-data">
             <input type="text" name="titulo" placeholder="Titulo del libro" required><br>
+            <input type="text" name="autor" placeholder="Autor del libro" required><br> 
+            <input type="text" name="isbn" placeholder="ISBN del libro" required><br> 
             <input type="text" name="edicion" placeholder="Edicion del libro" required><br>
             <input type="text" name="resena" placeholder="Reseña del libro" required><br>
             <h3>Status del libro</h3>

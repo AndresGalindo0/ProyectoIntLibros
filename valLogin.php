@@ -10,7 +10,7 @@ function validarUsuario($nombre, $contraseña) {
         die("Conexión fallida: " . $con->connect_error);
     }
 
-    $sql = "SELECT * FROM usuarios WHERE nombre = ? AND pass = ? AND verificado = 1"; // Agregar verificación de usuario
+    $sql = "SELECT * FROM usuarios WHERE nombre = ? AND pass = ? AND verificado = 1 AND eliminado = 0";
     $stmt = $con->prepare($sql);
     $stmt->bind_param("ss", $nombre, $contraseña);
     $stmt->execute();

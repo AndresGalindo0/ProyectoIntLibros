@@ -11,11 +11,10 @@ require_once("conecta.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuario</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.6)), url('imagen4.jpeg');
+            background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('imagen4.jpeg');
             background-size: cover;
             color: #333;
         }
@@ -98,7 +97,6 @@ require_once("conecta.php");
                             </div>
                             <div class="text-center">
                                 <a href="pagPrincipal.php" class="btn btn-primary mr-2">Regresar a la página principal</a>
-                                <a href="reportes.php" class="btn btn-primary mr-2">Reportar</a>
                                 <a href="misLibros.php" class="btn btn-primary mr-2">Mis Libros</a>
                                 <br><br><br>
                                 <a href="cerrar_sesion.php" class="btn btn-danger">Cerrar sesión</a>
@@ -118,7 +116,6 @@ require_once("conecta.php");
     ?>
 </div>
 
-<!-- Bootstrap JS (optional) -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
